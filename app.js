@@ -66,7 +66,7 @@
   async function submitSubscribe(email, msgEl, btn, originalLabel, msgClassPrefix) {
     btn.disabled = true; btn.textContent = 'Subscribing…';
     try {
-      const { error } = await client.from('subscribers').insert({ email, source: 'website' });
+      const { error } = await client.from('subscribers').insert({ email });
       if (error) {
         if (error.code === '23505' || /duplicate|unique/i.test(error.message)) {
           msgEl.className = msgClassPrefix + ' ok';
@@ -165,7 +165,7 @@
      HOMEPAGE-ONLY: feed, hero, search, subscribe
      ───────────────────────────────────────── */
   const cardsEl = document.getElementById('cards');
-  if (!cardsEl || !client) return; // not on the homepage
+  if (!cardsEl || !client) return;
 
   const PAGE_SIZE = 24;
   const state = { items: [], page: 0, query: '', category: 'all', loading: false, done: false };
