@@ -1,4 +1,4 @@
-# Clean URLs — serve .html files without the extension showing
-/about-ninet           /about-ninet.html         200
-/privacy-policy        /privacy-policy.html      200
-/terms-of-service      /terms-of-service.html    200
+# Redirect old ninet.io paths to .html files
+/about-ninet            /about-ninet.html        301
+/privacy-policy         /privacy-policy.html     301
+/terms-of-service       /terms-of-service.html   301
