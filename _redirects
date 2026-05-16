@@ -1,0 +1,4 @@
+# Clean URLs — serve .html files without the extension showing
+/about-ninet           /about-ninet.html         200
+/privacy-policy        /privacy-policy.html      200
+/terms-of-service      /terms-of-service.html    200
