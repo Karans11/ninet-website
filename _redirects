@@ -1,4 +1,0 @@
-# Redirect old ninet.io paths to .html files
-/about-ninet            /about-ninet.html        301
-/privacy-policy         /privacy-policy.html     301
-/terms-of-service       /terms-of-service.html   301
