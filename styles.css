@@ -387,11 +387,73 @@ footer ul a:hover { color: var(--ink); }
   .nav-links a:not(.nav-cta):not(.nav-subscribe) { display: none; }
 }
 @media (max-width: 740px) {
-  footer { grid-template-columns: 1fr 1fr; }
-  .foot-bottom { flex-direction: column; gap: 8px; text-align: center; }
+  /* Nav — compact on mobile */
+  .nav {
+    padding: 12px 16px;
+    gap: 8px;
+  }
+  .nav.compact { padding: 10px 16px; }
+  .brand-mark { width: 32px; height: 32px; border-radius: 8px; }
+  .brand-word { font-size: 18px; }
+  .nav-links {
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  .nav-subscribe {
+    padding: 7px 12px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+  .nav-cta {
+    padding: 7px 14px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  /* Footer — stack to single column for clarity */
+  footer {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 48px 24px 28px;
+  }
+  footer h4 { margin-bottom: 14px; }
+  .foot-bio { max-width: 100%; }
+  .foot-bottom {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+    font-size: 9px;
+  }
+
+  /* Welcome modal */
   .welcome-card { padding: 36px 24px 24px; }
   .welcome-card h2 { font-size: 26px; }
+
+  /* Legal pages — Privacy, Terms, About */
+  .page-hero {
+    padding: 110px 20px 40px;
+  }
+  .page-hero h1 { font-size: clamp(36px, 11vw, 56px); }
+  .page-hero .lede { font-size: 16px; }
+  .legal {
+    padding: 16px 20px 60px;
+  }
+  .legal h2 { font-size: 24px; margin: 36px 0 14px; }
+  .legal h3 { font-size: 19px; margin: 24px 0 10px; }
+  .legal p, .legal ul, .legal ol { font-size: 14px; }
+  .legal table { font-size: 13px; }
+  .legal table th, .legal table td { padding: 10px 12px; }
+  .legal .callout { padding: 16px 18px; }
 }
+
+/* Smallest phones */
+@media (max-width: 380px) {
+  .nav { padding: 10px 12px; }
+  .brand-word { font-size: 16px; }
+  .nav-subscribe, .nav-cta { padding: 6px 10px; font-size: 11px; }
+  .nav-subscribe { display: none; } /* Hide on tiny screens to make room */
+}
+
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
 
 /* Fix italic glyph clipping for gradient-text — Fraunces italics have descenders that overhang
