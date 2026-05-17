@@ -378,3 +378,10 @@ footer ul a:hover { color: var(--ink); }
   .welcome-card h2 { font-size: 26px; }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+
+/* Fix italic glyph clipping for gradient-text — Fraunces italics have descenders that overhang
+   their bounding box; background-clip:text crops them. Padding gives them room. */
+h1 em, h2 em, h3 em, .brand-word em, .welcome-card h2 em, .ps-brand {
+  padding-right: 0.12em;
+  display: inline-block;
+}
