@@ -438,54 +438,45 @@
     .community { grid-template-columns: 1fr; }
   }
   @media (max-width: 740px) {
-    /* Hero — stack vertical, center cards, smaller padding */
+    /* Hero — stack vertical, smaller padding, hide 3D card stack */
     .hero {
-      padding: 110px 20px 60px;
-      gap: 50px;
+      padding: 110px 20px 40px;
+      gap: 0;
       min-height: auto;
+      grid-template-columns: 1fr;
     }
     .hero h1 { font-size: clamp(40px, 11vw, 64px); margin-bottom: 20px; }
-    .hero-sub { font-size: 15px; margin-bottom: 28px; }
+    .hero h1 .line { display: block; }
+    .hero-sub { font-size: 15px; margin-bottom: 28px; max-width: 100%; }
     .hero-cta { flex-direction: column; gap: 10px; }
     .hero-cta .btn { width: 100%; justify-content: center; }
-    .hero-stats { gap: 24px; flex-wrap: wrap; margin-top: 36px; padding-top: 20px; }
-    .stat .num { font-size: 26px; }
-
-    /* Hero stack — repositioned for mobile, smaller cards, no negative space */
-    .stack {
-      height: 420px;
-      max-width: 100%;
-      position: relative;
-      overflow: visible;
-    }
-    .stack-card {
-      width: 78%;
-      max-width: 280px;
-      height: 320px;
-      padding: 20px;
-    }
-    .stack-card .cat { font-size: 9px; margin-bottom: 10px; }
-    .stack-card .ttl { font-size: 18px; margin-bottom: 12px; }
-    .stack-card .sum { font-size: 12px; -webkit-line-clamp: 4; }
-    .stack-card .meta { bottom: 18px; left: 20px; right: 20px; font-size: 9px; }
-    .stack-card.c1 { top: 0;    left: 10%;  right: auto; transform: rotateY(-6deg) rotateX(3deg) translateZ(10px); }
-    .stack-card.c2 { top: 50px;  left: 0%;   right: auto; transform: rotateY(-4deg) rotateX(2deg) translateZ(40px); }
-    .stack-card.c3 { top: 100px; left: 20%;  right: auto; transform: rotateY(-8deg) rotateX(4deg) translateZ(-10px); }
-    @keyframes floatA { 0%,100% { transform: rotateY(-6deg) rotateX(3deg) translateZ(10px) translateY(0); } 50% { transform: rotateY(-8deg) rotateX(2deg) translateZ(10px) translateY(-10px); } }
-    @keyframes floatB { 0%,100% { transform: rotateY(-4deg) rotateX(2deg) translateZ(40px) translateY(0); }  50% { transform: rotateY(-2deg) rotateX(1deg) translateZ(40px) translateY(-12px); } }
-    @keyframes floatC { 0%,100% { transform: rotateY(-8deg) rotateX(4deg) translateZ(-10px) translateY(0); } 50% { transform: rotateY(-10deg) rotateX(3deg) translateZ(-10px) translateY(-8px); } }
+    .hero-stats { gap: 20px; flex-wrap: wrap; margin-top: 32px; padding-top: 20px; }
+    .stat .num { font-size: 24px; }
+    .stat .lbl { font-size: 9px; }
+    /* The 3D floating card stack is a desktop flourish — hide on phones, article grid below covers it */
+    .stack { display: none; }
 
     /* Section padding */
     section { padding: 60px 20px; }
+    .section-head { margin-bottom: 32px; gap: 16px; }
     .section-head h2 { font-size: clamp(32px, 9vw, 48px); }
+    .section-head p { font-size: 14px; }
 
     /* Article grid — single column */
     .grid-cards { grid-template-columns: 1fr; gap: 20px; }
     .card { min-height: auto; }
-    .card-img { height: 180px; }
+    .card-img { height: 200px; }
     .card-ttl { font-size: 20px; }
     .card-body { padding: 18px; }
-    .card:hover { transform: translateY(-4px) translateZ(20px) scale(1.01); }
+    /* Disable the heavy 3D pop-up on touch devices — feels weird without hover */
+    .card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -10px rgba(0,0,0,0.7); }
+    .card:hover .card-ttl, .card:hover .card-sum {
+      -webkit-line-clamp: 3;
+      display: -webkit-box;
+      overflow: hidden;
+    }
+    .card:hover .card-sum { -webkit-line-clamp: 4; }
+    .card:hover::before { opacity: 0; animation: none; }
 
     /* Search & chips */
     .search input { padding: 14px 18px 14px 48px; font-size: 14px; }
@@ -494,30 +485,34 @@
     .chip { padding: 7px 12px; font-size: 10px; }
 
     /* App section */
-    .app-section { margin: 30px 20px; padding: 50px 24px; }
+    .app-section {
+      margin: 30px 20px;
+      padding: 50px 24px;
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
     .app-section h2 { font-size: clamp(32px, 9vw, 44px); }
+    .app-section p { font-size: 15px; max-width: 100%; }
     .store-btns { flex-direction: column; }
     .store-btn { width: 100%; justify-content: center; }
-    .phone { width: 220px; height: 460px; }
+    .phone { width: 200px; height: 420px; }
 
     /* Community */
-    .community { margin: 30px 20px; gap: 16px; }
+    .community {
+      margin: 30px 20px;
+      gap: 16px;
+      grid-template-columns: 1fr;
+    }
     .community-card { padding: 28px 24px; min-height: auto; }
     .community-card h3 { font-size: 22px; }
 
     /* Subscribe */
     .subscribe { margin: 30px 20px 60px; padding: 50px 24px; }
     .subscribe h2 { font-size: clamp(32px, 9vw, 44px); }
+    .subscribe p { font-size: 14px; }
     .sub-form { flex-direction: column; }
     .sub-form input[type="email"] { min-width: 0; width: 100%; }
     .sub-form button { width: 100%; }
-  }
-  @media (max-width: 480px) {
-    .stack { height: 380px; }
-    .stack-card { width: 72%; max-width: 240px; height: 280px; }
-    .stack-card.c1 { left: 14%; }
-    .stack-card.c2 { left: 0; top: 40px; }
-    .stack-card.c3 { left: 22%; top: 80px; }
   }
 </style>
 </head>
