@@ -247,6 +247,21 @@ input { font: inherit; color: inherit; outline: none; }
 }
 .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 8px 22px -8px rgba(255,255,255,0.4); color: #000; }
 
+.nav-subscribe {
+  padding: 9px 18px; border-radius: 999px;
+  background: transparent; color: var(--ink);
+  border: 1px solid var(--line-strong);
+  font-family: var(--sans); font-weight: 500; font-size: 13px;
+  letter-spacing: 0; text-transform: none;
+  transition: all 0.2s;
+}
+.nav-subscribe:hover {
+  border-color: var(--cy);
+  color: var(--cy);
+  background: rgba(29,232,255,0.06);
+  transform: translateY(-1px);
+}
+
 /* BUTTONS */
 .btn {
   display: inline-flex; align-items: center; gap: 10px;
@@ -369,7 +384,7 @@ footer ul a:hover { color: var(--ink); }
 
 /* RESPONSIVE shared */
 @media (max-width: 1100px) {
-  .nav-links a:not(.nav-cta) { display: none; }
+  .nav-links a:not(.nav-cta):not(.nav-subscribe) { display: none; }
 }
 @media (max-width: 740px) {
   footer { grid-template-columns: 1fr 1fr; }
@@ -380,8 +395,9 @@ footer ul a:hover { color: var(--ink); }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
 
 /* Fix italic glyph clipping for gradient-text — Fraunces italics have descenders that overhang
-   their bounding box; background-clip:text crops them. Padding gives them room. */
-h1 em, h2 em, h3 em, .brand-word em, .welcome-card h2 em, .ps-brand {
-  padding-right: 0.12em;
-  display: inline-block;
+   their bounding box; background-clip:text crops them. Padding gives them room without
+   breaking inline flow. */
+h1 em, h2 em, h3 em, .brand-word em, .welcome-card h2 em {
+  padding-right: 0.08em;
+  margin-right: -0.08em;
 }
