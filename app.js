@@ -161,6 +161,31 @@
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+  // Discord live member count
+  const DISCORD_SERVER_ID = ''; // TODO: fill in after enabling Server Widget in Discord settings
+
+  (async function fetchDiscordMemberCount() {
+    if (!DISCORD_SERVER_ID) return;
+    const wrap = document.getElementById('discord-member-count');
+    const text = document.getElementById('discord-member-count-text');
+    if (!wrap || !text) return; // not on this page
+    try {
+      const res = await fetch(
+        'https://discord.com/api/guilds/' + encodeURIComponent(DISCORD_SERVER_ID) + '/widget.json',
+        { method: 'GET', credentials: 'omit', cache: 'no-store' }
+      );
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const data = await res.json();
+      const count = Number(data && data.presence_count);
+      if (!Number.isFinite(count)) throw new Error('missing presence_count');
+      text.innerText = count.toLocaleString() + ' members online';
+      wrap.style.display = 'inline-flex';
+    } catch (err) {
+      console.warn('[NineT] Discord widget unavailable:', err);
+      // silently fail — element stays hidden
+    }
+  })();
+
   /* ─────────────────────────────────────────
      HOMEPAGE-ONLY: feed, hero, search, subscribe
      ───────────────────────────────────────── */

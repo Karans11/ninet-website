@@ -3,8 +3,8 @@
   --bg: #050507;
   --bg-soft: #0a0a10;
   --ink: #ffffff;
-  --ink-mute: #9ca0b3;
-  --ink-faint: #5a5d70;
+  --ink-mute: #c4c8d6;
+  --ink-faint: #8a8da0;
   --line: rgba(255,255,255,0.08);
   --line-strong: rgba(255,255,255,0.16);
 
@@ -262,6 +262,19 @@ input { font: inherit; color: inherit; outline: none; }
   transform: translateY(-1px);
 }
 
+/* Nav Discord — secondary/ghost style, icon + text */
+.nav-discord {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 8px 14px; border-radius: 999px;
+  background: transparent;
+  color: rgba(255,255,255,0.7);
+  font-family: var(--sans); font-weight: 500; font-size: 13px;
+  letter-spacing: 0; text-transform: none;
+  transition: color 0.2s, background 0.2s;
+}
+.nav-discord:hover { color: var(--ink); background: rgba(88,101,242,0.1); }
+.nav-discord-icon { width: 16px; height: 16px; flex-shrink: 0; }
+
 /* BUTTONS */
 .btn {
   display: inline-flex; align-items: center; gap: 10px;
@@ -287,6 +300,114 @@ footer ul a { color: var(--ink-mute); font-size: 14px; transition: color 0.2s; }
 footer ul a:hover { color: var(--ink); }
 .foot-bio { color: var(--ink-mute); font-size: 14px; line-height: 1.7; max-width: 340px; margin-top: 16px; }
 .foot-bottom { grid-column: 1 / -1; margin-top: 28px; padding-top: 22px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; color: var(--ink-faint); flex-wrap: wrap; gap: 12px; }
+
+/* ─────────────────────────────────────────
+   Discord Integration
+   ───────────────────────────────────────── */
+/* Footer social icon row (Discord + X) */
+.footer-social { display: flex; gap: 10px; margin-bottom: 18px; }
+.footer-social a {
+  width: 36px; height: 36px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--line);
+  color: var(--ink-mute);
+  transition: color 0.2s, border-color 0.2s, background 0.2s, transform 0.2s;
+}
+.footer-social a:hover {
+  color: #00D9FF;
+  border-color: rgba(0,217,255,0.4);
+  background: rgba(0,217,255,0.06);
+  transform: translateY(-2px);
+}
+.footer-social a svg { width: 16px; height: 16px; }
+.footer-social .discord-link:hover {
+  color: #5865F2;
+  border-color: rgba(88,101,242,0.4);
+  background: rgba(88,101,242,0.08);
+}
+
+/* Discord community section (homepage) */
+.discord-section {
+  padding: 96px clamp(20px, 5vw, 56px);
+  text-align: center;
+}
+.discord-inner {
+  max-width: 1024px;
+  margin: 0 auto;
+  display: flex; flex-direction: column; align-items: center;
+}
+.discord-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 12px;
+  border-radius: 9999px;
+  background: rgba(88,101,242,0.10);
+  border: 1px solid rgba(88,101,242,0.20);
+  color: #5865F2;
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.discord-badge-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 12px rgba(74,222,128,0.7);
+  animation: discord-pulse 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+@keyframes discord-pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.5; }
+}
+.discord-section h2 {
+  font-family: var(--serif); font-weight: 300;
+  font-size: clamp(40px, 5.5vw, 64px);
+  line-height: 1; letter-spacing: -0.025em;
+  margin-bottom: 16px;
+}
+.discord-section h2 em {
+  font-style: italic;
+  background: linear-gradient(120deg, var(--cy), var(--vi));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.discord-sub {
+  max-width: 640px;
+  margin: 0 auto 32px;
+  font-size: 18px; color: rgba(255,255,255,0.78);
+  line-height: 1.55;
+}
+.discord-member-count {
+  align-items: center; justify-content: center;
+  gap: 10px;
+  margin-bottom: 24px;
+  font-family: var(--mono); font-size: 12px;
+  letter-spacing: 0.06em;
+  color: rgba(255,255,255,0.78);
+}
+.discord-cta {
+  display: inline-flex; align-items: center; gap: 12px;
+  padding: 16px 32px;
+  border-radius: 9999px;
+  background: #5865F2;
+  color: #ffffff;
+  font-family: var(--sans); font-weight: 500; font-size: 15px;
+  text-decoration: none;
+  box-shadow: 0 14px 36px -10px rgba(88,101,242,0.55);
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.discord-cta:hover {
+  background: #4752C4;
+  transform: scale(1.05);
+  box-shadow: 0 20px 44px -10px rgba(88,101,242,0.7);
+}
+.discord-cta svg { width: 24px; height: 24px; flex-shrink: 0; }
+
+/* Respect reduced motion — disable the pulse and hover scale */
+@media (prefers-reduced-motion: reduce) {
+  .discord-badge-dot { animation: none; }
+  .discord-cta:hover { transform: none; }
+}
 
 /* REVEAL */
 .reveal { opacity: 0; transform: translateY(36px); transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1); }
@@ -384,7 +505,7 @@ footer ul a:hover { color: var(--ink); }
 
 /* RESPONSIVE shared */
 @media (max-width: 1100px) {
-  .nav-links a:not(.nav-cta):not(.nav-subscribe) { display: none; }
+  .nav-links a:not(.nav-cta):not(.nav-subscribe):not(.nav-discord) { display: none; }
 }
 @media (max-width: 740px) {
   /* Nav — compact on mobile */
@@ -409,6 +530,22 @@ footer ul a:hover { color: var(--ink); }
     font-size: 12px;
     white-space: nowrap;
   }
+  .nav-discord {
+    padding: 6px 10px;
+    font-size: 12px;
+    gap: 5px;
+    white-space: nowrap;
+  }
+  .nav-discord-icon { width: 14px; height: 14px; }
+
+  /* Discord section — tighter on mobile */
+  .discord-section { padding: 60px 20px; }
+  .discord-section h2 { font-size: clamp(32px, 9vw, 44px); }
+  .discord-sub { font-size: 15px; margin-bottom: 24px; }
+  .discord-cta { padding: 14px 24px; font-size: 14px; width: 100%; max-width: 320px; justify-content: center; }
+  .discord-badge { font-size: 10px; padding: 6px 12px; }
+  /* Footer social icons — show on mobile too */
+  .footer-social { margin-bottom: 14px; }
 
   /* Footer — stack to single column for clarity */
   footer {
@@ -452,6 +589,9 @@ footer ul a:hover { color: var(--ink); }
   .brand-word { font-size: 16px; }
   .nav-subscribe, .nav-cta { padding: 6px 10px; font-size: 11px; }
   .nav-subscribe { display: none; } /* Hide on tiny screens to make room */
+  /* Collapse Discord nav link to icon-only on tiny screens */
+  .nav-discord { padding: 6px 8px; }
+  .nav-discord span { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
