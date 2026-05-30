@@ -90,6 +90,9 @@ img{display:block;max-width:100%}
 .logo em{font-style:italic;background:linear-gradient(90deg,#00C6FF,#3B82F6,#7C3AED);-webkit-background-clip:text;background-clip:text;color:transparent}
 .nav-cta{padding:9px 16px;border-radius:999px;background:#00D9FF;color:#000;font-weight:600;font-size:13px;transition:transform .2s}
 .nav-cta:hover{transform:translateY(-1px)}
+.nav-right{display:flex;align-items:center;gap:24px}
+.nav-link{color:rgba(255,255,255,0.7);font-size:14px;font-weight:500;transition:color .2s}
+.nav-link:hover{color:#fff}
 .wrap{max-width:720px;margin:0 auto;padding:32px 24px 64px}
 .cat-pill{display:inline-block;padding:5px 12px;border-radius:999px;border:1px solid rgba(0,217,255,0.4);color:#00D9FF;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:20px}
 h1.title{font-family:Georgia,serif;font-size:34px;line-height:1.25;letter-spacing:-0.01em;margin-bottom:16px;color:#fff;font-weight:400}
@@ -114,10 +117,23 @@ h1.title{font-family:Georgia,serif;font-size:34px;line-height:1.25;letter-spacin
 .err p{color:#888;margin-bottom:28px}
 .err-back{display:inline-flex;align-items:center;padding:12px 24px;border-radius:12px;background:linear-gradient(90deg,#00C6FF,#3B82F6,#7C3AED);color:#fff;font-weight:600;font-size:14px;transition:transform .2s}
 .err-back:hover{transform:translateY(-2px)}
-@media (max-width:600px){h1.title{font-size:28px}.wrap{padding:24px 18px 48px}.cta-primary,.cta-secondary{flex:1 1 100%}}
+@media (max-width:600px){
+  h1.title{font-size:28px}
+  .wrap{padding:24px 18px 48px}
+  .cta-primary,.cta-secondary{flex:1 1 100%}
+  .nav-right{gap:12px}
+  .nav-link{display:none}
+}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}`;
 
-const NAV_HTML = `<nav class="nav"><a class="logo" href="${SITE}/">Nine<em>T</em></a><a class="nav-cta" href="${IOS_URL}" target="_blank" rel="noopener">Get the app</a></nav>`;
+const NAV_HTML = `<nav class="nav">
+  <a class="logo" href="${SITE}/">Nine<em>T</em></a>
+  <div class="nav-right">
+    <a class="nav-link" href="${SITE}/">Feed</a>
+    <a class="nav-link" href="${SITE}/#subscribe">Subscribe</a>
+    <a class="nav-cta" href="${SITE}/#app">Get the app</a>
+  </div>
+</nav>`;
 
 const FOOTER_HTML = `<footer class="footer"><div class="tag">NineT — Less Reading. More Knowing.</div><div class="links"><a href="${SITE}/">Feed</a><a href="${SITE}/about-ninet">About</a><a href="${SITE}/privacy-policy">Privacy</a><a href="${SITE}/terms-of-service">Terms</a></div></footer>`;
 
@@ -214,10 +230,9 @@ ${metaLine ? `<div class="meta">${metaLine}</div>` : ''}
 ${heroBlock}
 <p class="summary">${summary}</p>
 <div class="cta-row">
-<a class="cta-primary" href="${IOS_URL}" target="_blank" rel="noopener">Get NineT — Read AI news in 60 seconds</a>
+<a class="cta-primary" href="${SITE}/#app">Get NineT — Read AI news in 60 seconds</a>
 ${secondaryCta}
 </div>
-<a class="play-link" href="${ANDROID_URL}" target="_blank" rel="noopener">Get it on Google Play →</a>
 </main>
 ${FOOTER_HTML}
 </body>
