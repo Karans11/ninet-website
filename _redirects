@@ -1,0 +1,2 @@
+# www → apex redirect (SEO: canonical host enforcement)
+https://www.ninet.io/*  https://ninet.io/:splat  301

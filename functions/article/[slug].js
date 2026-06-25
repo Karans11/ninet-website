@@ -170,7 +170,7 @@ function renderArticleHtml(article, slug) {
   else if (dateNice) metaLine = dateNice;
 
   const heroBlock = heroImage
-    ? `<div class="hero"><img src="${heroImageEsc}" alt="${title}" loading="lazy" decoding="async" referrerpolicy="no-referrer"></div>`
+    ? `<div class="hero"><img src="${heroImageEsc}" alt="${title}" loading="eager" fetchpriority="high" decoding="async" referrerpolicy="no-referrer"></div>`
     : '';
 
   const secondaryCta = originalUrl
